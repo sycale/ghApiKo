@@ -1,7 +1,5 @@
 import $ from 'jquery';
 
-// const xhr = new XMLHttpRequest();
-
 const goldTier = 25;
 const silverTIer = 15;
 const bronzeTier = 5;
@@ -35,6 +33,7 @@ $(document).ready(() => {
           goldList.push(element);
         }
       });
+      $('.all-tier').trigger('click');
     }),
     (errData) => {
       console.log(`${errData.status} ${errData.statusText}`);
@@ -43,25 +42,33 @@ $(document).ready(() => {
   $('.all-tier').click(() => {
     $('.list_content').empty();
     list.forEach((element) => {
-      $('.list_content').append(`<span class = "list_item">${element.login}</span>`);
+      $('.list_content').append(
+        `<span class = "list_item"><a href = "${element.html_url}">${element.login}</a></span>`,
+      );
     });
   });
   $('.gold-tier').click(() => {
     $('.list_content').empty();
     goldList.forEach((element) => {
-      $('.list_content').append(`<span class = "list_item">${element.login}</span>`);
+      $('.list_content').append(
+        `<span class = "list_item"><a href = "${element.html_url}">${element.login}</a></span>`,
+      );
     });
   });
   $('.silver-tier').click(() => {
     $('.list_content').empty();
     silverList.forEach((element) => {
-      $('.list_content').append(`<span class = "list_item">${element.login}</span>`);
+      $('.list_content').append(
+        `<span class = "list_item"><a href = "${element.html_url}">${element.login}</a></span>`,
+      );
     });
   });
   $('.bronze-tier').click(() => {
     $('.list_content').empty();
     bronzeList.forEach((element) => {
-      $('.list_content').append(`<span class = "list_item">${element.login}</span>`);
+      $('.list_content').append(
+        `<span class = "list_item"><a href = "${element.html_url}">${element.login}</a></span>`,
+      );
     });
   });
 });
