@@ -81,21 +81,20 @@ function contrDSort(array) {
 function replace(arr) {
   $('.list_content').empty();
   arr.forEach((element) => {
-    // getInfo(element.login).then((content) => {
-    //   $('.list_content').append(
-    //     `<div class = "list_item"><span class = "item_login"><a href = "${element.html_url}">${element.login}</a></span>
-    //     <br>
-    //     <span class = "item_company">Company: ${content.company}</span>
-    //     <br>
-    //     <span class = "item_email">Email: ${content.email}</span>
-    //     <br>
-    //     <span class = "item_location">Location: ${content.location}</span>
-    //     </div>`,
-    //   );
-    // });
+    getInfo(element.login).then((content) => {
+      $('.list_content').append(
+        `<div class = "list_item"><span class = "item_login"><a href = "${element.html_url}">${element.login}</a></span>
+        <br>
+        <span class = "item_company">Company: ${content.company}</span>
+        <br>
+        <span class = "item_email">Email: ${content.email}</span>
+        <br>
+        <span class = "item_location">Location: ${content.location}</span>
+        </div>`,
+      );
+    });
   });
 }
-
 
 function sortAndReplace() {
   if ($('.sort-type:selected').attr('data-val') === 'alph_a') {
