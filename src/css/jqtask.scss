@@ -60,8 +60,20 @@ a:visited {
       display: flex;
       flex-direction: column;
   }
+  &_sort {
+    margin-top:25px;
+    &>span {
+      margin-right: 15px;
+      font-size: 20px;
+    }
+    
+  }
 }
 
+.sort_main {
+  height: 30px;
+  background-color: #fff;
+}
 
 .title_item > span:hover {
   background-color: orange;
