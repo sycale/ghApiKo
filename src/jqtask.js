@@ -80,6 +80,57 @@ function replace(arr) {
   });
 }
 
+
+function sortAndReplace() {
+  if ($('.sort-type:selected').attr('data-val') === 'alph_a') {
+    ascSort([list, goldList, bronzeList, silverList]);
+    if ($('.list_content').attr('data-current') === 'all') {
+      replace(list);
+    } else if ($('.list_content').attr('data-current') === 'gold') {
+      replace(goldList);
+    } else if ($('.list_content').attr('data-current') === 'silver') {
+      replace(silverList);
+    } else if ($('.list_content').attr('data-current') === 'bronze') {
+      replace(bronzeList);
+    }
+  } else if ($('.sort-type:selected').attr('data-val') === 'alph_d') {
+    descSort([list, goldList, bronzeList, silverList]);
+    if ($('.list_content').attr('data-current') === 'all') {
+      replace(list);
+    } else if ($('.list_content').attr('data-current') === 'gold') {
+      replace(goldList);
+    } else if ($('.list_content').attr('data-current') === 'silver') {
+      replace(silverList);
+    } else if ($('.list_content').attr('data-current') === 'bronze') {
+      replace(bronzeList);
+    }
+  } else if ($('.sort-type:selected').attr('data-val') === 'contr_a') {
+    contrASort([list, goldList, bronzeList, silverList]);
+    if ($('.list_content').attr('data-current') === 'all') {
+      replace(list);
+    } else if ($('.list_content').attr('data-current') === 'gold') {
+      replace(goldList);
+    } else if ($('.list_content').attr('data-current') === 'silver') {
+      replace(silverList);
+    } else if ($('.list_content').attr('data-current') === 'bronze') {
+      replace(bronzeList);
+    }
+  } else if ($('.sort-type:selected').attr('data-val') === 'contr_d') {
+    contrDSort([list, goldList, bronzeList, silverList]);
+    if ($('.list_content').attr('data-current') === 'all') {
+      replace(list);
+    } else if ($('.list_content').attr('data-current') === 'gold') {
+      replace(goldList);
+    } else if ($('.list_content').attr('data-current') === 'silver') {
+      replace(silverList);
+    } else if ($('.list_content').attr('data-current') === 'bronze') {
+      replace(bronzeList);
+    }
+  }
+}
+
+
+
 $(document).ready(() => {
   $('#inputButton').click(() => {
     list = [];
@@ -124,50 +175,6 @@ $(document).ready(() => {
     replace(bronzeList);
   });
   $('.sort_main').on('change', () => {
-    if ($('.sort-type:selected').attr('data-val') === 'alph_a') {
-      ascSort([list, goldList, bronzeList, silverList]);
-      if ($('.list_content').attr('data-current') === 'all') {
-        replace(list);
-      } else if ($('.list_content').attr('data-current') === 'gold') {
-        replace(goldList);
-      } else if ($('.list_content').attr('data-current') === 'silver') {
-        replace(silverList);
-      } else if ($('.list_content').attr('data-current') === 'bronze') {
-        replace(bronzeList);
-      }
-    } else if ($('.sort-type:selected').attr('data-val') === 'alph_d') {
-      descSort([list, goldList, bronzeList, silverList]);
-      if ($('.list_content').attr('data-current') === 'all') {
-        replace(list);
-      } else if ($('.list_content').attr('data-current') === 'gold') {
-        replace(goldList);
-      } else if ($('.list_content').attr('data-current') === 'silver') {
-        replace(silverList);
-      } else if ($('.list_content').attr('data-current') === 'bronze') {
-        replace(bronzeList);
-      }
-    } else if ($('.sort-type:selected').attr('data-val') === 'contr_a') {
-      contrASort([list, goldList, bronzeList, silverList]);
-      if ($('.list_content').attr('data-current') === 'all') {
-        replace(list);
-      } else if ($('.list_content').attr('data-current') === 'gold') {
-        replace(goldList);
-      } else if ($('.list_content').attr('data-current') === 'silver') {
-        replace(silverList);
-      } else if ($('.list_content').attr('data-current') === 'bronze') {
-        replace(bronzeList);
-      }
-    } else if ($('.sort-type:selected').attr('data-val') === 'contr_d') {
-      contrDSort([list, goldList, bronzeList, silverList]);
-      if ($('.list_content').attr('data-current') === 'all') {
-        replace(list);
-      } else if ($('.list_content').attr('data-current') === 'gold') {
-        replace(goldList);
-      } else if ($('.list_content').attr('data-current') === 'silver') {
-        replace(silverList);
-      } else if ($('.list_content').attr('data-current') === 'bronze') {
-        replace(bronzeList);
-      }
-    }
+   sortAndReplace();
   });
 });
