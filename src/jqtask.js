@@ -15,6 +15,14 @@ function getContributors(owner, repo) {
   });
 }
 
+function getInfo(user) {
+  return $.ajax({
+    dataType: 'json',
+    type: 'GET',
+    url: `https://api.github.com/users/${user}`,
+  });
+}
+
 function ascSort(array) {
   array.forEach((arr) => {
     for (let i = 0, endI = arr.length - 1; i < endI; i += 1) {
@@ -74,9 +82,18 @@ function contrDSort(array) {
 function replace(arr) {
   $('.list_content').empty();
   arr.forEach((element) => {
-    $('.list_content').append(
-      `<span class = "list_item"><a href = "${element.html_url}">${element.login}</a></span>`,
-    );
+    getInfo(element.login).then((content) => {
+      $('.list_content').append(
+        `<div class = "list_item"><span class = "item_login"><a href = "${element.html_url}">${element.login}</a></span>
+        <br>
+        <span class = "item_company">Company: ${content.company}</span>
+        <br>
+        <span class = "item_email">Email: ${content.email}</span>
+        <br>
+        <span class = "item_location">Location: ${content.location}</span>
+        </div>`,
+      );
+    });
   });
 }
 
@@ -129,8 +146,6 @@ function sortAndReplace() {
   }
 }
 
-
-
 $(document).ready(() => {
   $('#inputButton').click(() => {
     list = [];
@@ -175,6 +190,6 @@ $(document).ready(() => {
     replace(bronzeList);
   });
   $('.sort_main').on('change', () => {
-   sortAndReplace();
+    sortAndReplace();
   });
 });
