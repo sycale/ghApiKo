@@ -90,6 +90,8 @@ function replace(arr) {
         <span class = "item_email">Email: ${content.email}</span>
         <br>
         <span class = "item_location">Location: ${content.location}</span>
+        <br>
+        <button id = "editProfile" class = "click-me">edit profile</button>
         </div>`,
       );
     });
@@ -145,6 +147,12 @@ function sortAndReplace() {
 }
 
 $(document).ready(() => {
+  $.ajax({
+    url: 'https://api.github.com/rate_limit',
+    success(data) {
+      console.log(data);
+    },
+  });
   $('#inputButton').click(() => {
     list = [];
     goldList = [];
@@ -191,3 +199,4 @@ $(document).ready(() => {
     sortAndReplace();
   });
 });
+

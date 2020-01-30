@@ -1,4 +1,4 @@
-<body>
+<div class="page">
   <span class="title">Application to get contributors</span>
   <div class="main">
     <div class="submit-box">
@@ -9,15 +9,14 @@
       <span class="contributors_title">
         List of contributors:
       </span>
-      <div class = "contributors_sort">
+      <div class="contributors_sort">
         <span>Sort</span>
-        <select class = "sort_main">
-          <option style = "display:none">Choose method</option>
-          <option class = "sort-type" data-val = "alph_a">ASC alhabet</option>
-          <option class = "sort-type" data-val = "alph_d">DESC alphabet</option>
-          <option class = "sort-type" data-val = "contr_a">ASC contributes </option>
-          <option class = "sort-type" data-val = "contr_d">DESC contributes </option>
-
+        <select class="sort_main">
+          <option style="display:none">Choose method</option>
+          <option class="sort-type" data-val="alph_a">ASC alhabet</option>
+          <option class="sort-type" data-val="alph_d">DESC alphabet</option>
+          <option class="sort-type" data-val="contr_a">ASC contributes </option>
+          <option class="sort-type" data-val="contr_d">DESC contributes </option>
         </select>
       </div>
       <div class="contributors_list">
@@ -31,4 +30,71 @@
       </div>
     </div>
   </div>
-</body>
+</div>
+
+<div class="modal">
+  <div class="modal_box modal_title">Profile</div>
+  <div class="modal_box dir-row">
+    <div class="box_item">
+      <span class="modal-title">FIRST NAME*</span>
+      <input type="text" class="modal-input" placeholder="First name" />
+    </div>
+    <div class="box-item">
+      <span class="modal-title">LAST NAME*</span>
+      <input type="text" class="modal-input" placeholder="Last name" />
+    </div>
+  </div>
+  <div class="modal_box">
+    <span class="modal-title">
+      JOB ROLE/FUNCTION*
+    </span>
+    <input type="text" class="modal-input" placeholder="JOB ROLE/FUNCTION" />
+  </div>
+  <div class="modal_box dir-row">
+    <div class="box_item">
+      <span class="modal-title">PHONE NUMBER</span>
+      <input type="text" class="modal-input modal-input__narrow" placeholder="phone number" />
+    </div>
+    <div class="box_item">
+      <span class="modal-title">EXTENSION</span>
+      <input type="text" class="modal-input modal-input__narrow" placeholder="extension" />
+    </div>
+  </div>
+  <div class="modal_box">
+    <span class="modal-title">ACCOUNT NAME</span>
+    <span class="modal-subtitle" id="login">Account name</span>
+  </div>
+  <div class="modal_box">
+    <span class="modal-title">ACCOUNT NUMBER</span>
+    <span class="modal-subtitle" id="phone">XXXXXXXX</span>
+  </div>
+  <div class="modal_box">
+    <span class="modal-title">EMAIL ADDRESS</span>
+    <span class="modal-subtitle" id="email">test@test.test</span>
+  </div>
+  <div class="modal_box">
+    <span class="modal-title">PASSWORD</span>
+    <span class="modal-title modal-title__small">Password Rules: </span>
+    <ul>
+      <li>Must be a 8 characters password minimum</li>
+      <li>Cannot be a previously used password</li>
+      <li>Must include uppercase and lowercase letters</li>
+      <li>Must include a number and/or special characters</li>
+    </ul>
+    <input type="password" class="modal-input" placeholder="Old Password" />
+    <input type="password" class="modal-input" placeholder="New Password" />
+    <div class="btns">
+      <button class="cancel-btn btn">Cancel</button>
+      <button class="save-btn btn">Save</button>
+    </div>
+  </div>
+  <div class="modal_box">
+    <button class="btn deactivate-btn">Deactivate</button>
+  </div>
+
+  <img src="https://static.thenounproject.com/png/772420-200.png" class="password-img" />
+  <img
+    src="https://static.thenounproject.com/png/772420-200.png"
+    class="password-img password-img__lower"
+  />
+</div>
