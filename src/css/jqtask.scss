@@ -58,6 +58,38 @@ a:visited {
   }
   &_list {
       display: flex;
-      flex-direction: column
+      flex-direction: column;
   }
+}
+
+
+.title_item > span:hover {
+  background-color: orange;
+
+}
+
+.list_title {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.title_item {
+  text-align: center;
+  flex: 1 1 auto;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.list_content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.list_item {
+  margin-bottom: 25px;;
 }
