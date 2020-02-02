@@ -6,6 +6,10 @@ let goldList = [];
 let silverList = [];
 let bronzeList = [];
 let list = [];
+let userArr = {};
+const fieldsArr = ['#firstName', '#lastName', '#jobRole', '#phone'];
+let statusValid;
+
 function getContributors(owner, repo) {
   return $.ajax({
     dataType: 'json',
@@ -14,7 +18,7 @@ function getContributors(owner, repo) {
   });
 }
 
-function getInfo(user) {
+function getUserInfo(user) {
   return $.ajax({
     dataType: 'json',
     type: 'GET',
@@ -22,138 +26,142 @@ function getInfo(user) {
   });
 }
 
-function ascSort(array) {
-  array.forEach((arr) => {
-    for (let i = 0, endI = arr.length - 1; i < endI; i += 1) {
-      for (let j = 0, endJ = endI - i; j < endJ; j += 1) {
-        if (arr[j].login[0].toLowerCase() < arr[j + 1].login[0].toLowerCase()) {
-          const swap = arr[j];
-          arr[j] = arr[j + 1];
-          arr[j + 1] = swap;
+function sort(array, type) {
+  if (type === 'asc') {
+    array.forEach((arr) => {
+      for (let i = 0, endI = arr.length - 1; i < endI; i += 1) {
+        for (let j = 0, endJ = endI - i; j < endJ; j += 1) {
+          if (arr[j].login[0].toLowerCase() < arr[j + 1].login[0].toLowerCase()) {
+            const swap = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = swap;
+          }
         }
       }
-    }
-  });
-}
-
-function descSort(array) {
-  array.forEach((arr) => {
-    for (let i = 0, endI = arr.length - 1; i < endI; i += 1) {
-      for (let j = 0, endJ = endI - i; j < endJ; j += 1) {
-        if (arr[j].login[0].toLowerCase() > arr[j + 1].login[0].toLowerCase()) {
-          const swap = arr[j];
-          arr[j] = arr[j + 1];
-          arr[j + 1] = swap;
+    });
+  } else {
+    array.forEach((arr) => {
+      for (let i = 0, endI = arr.length - 1; i < endI; i += 1) {
+        for (let j = 0, endJ = endI - i; j < endJ; j += 1) {
+          if (arr[j].login[0].toLowerCase() > arr[j + 1].login[0].toLowerCase()) {
+            const swap = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = swap;
+          }
         }
       }
-    }
-  });
+    });
+  }
 }
 
-function contrASort(array) {
-  array.forEach((arr) => {
-    for (let i = 0, endI = arr.length - 1; i < endI; i += 1) {
-      for (let j = 0, endJ = endI - i; j < endJ; j += 1) {
-        if (arr[j].contributions > arr[j + 1].contributions) {
-          const swap = arr[j];
-          arr[j] = arr[j + 1];
-          arr[j + 1] = swap;
+function contrSort(array, type) {
+  if (type === 'asc') {
+    array.forEach((arr) => {
+      for (let i = 0, endI = arr.length - 1; i < endI; i += 1) {
+        for (let j = 0, endJ = endI - i; j < endJ; j += 1) {
+          if (arr[j].contributions > arr[j + 1].contributions) {
+            const swap = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = swap;
+          }
         }
       }
-    }
-  });
-}
-
-function contrDSort(array) {
-  array.forEach((arr) => {
-    for (let i = 0, endI = arr.length - 1; i < endI; i += 1) {
-      for (let j = 0, endJ = endI - i; j < endJ; j += 1) {
-        if (arr[j].contributions < arr[j + 1].contributions) {
-          const swap = arr[j];
-          arr[j] = arr[j + 1];
-          arr[j + 1] = swap;
+    });
+  } else {
+    array.forEach((arr) => {
+      for (let i = 0, endI = arr.length - 1; i < endI; i += 1) {
+        for (let j = 0, endJ = endI - i; j < endJ; j += 1) {
+          if (arr[j].contributions < arr[j + 1].contributions) {
+            const swap = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = swap;
+          }
         }
       }
-    }
-  });
+    });
+  }
 }
-
-function replace(arr) {
+function replaceList(arr) {
   $('.list_content').empty();
   arr.forEach((element) => {
-    getInfo(element.login).then((content) => {
-      $('.list_content').append(
-        `<div class = "list_item"><span class = "item_login"><a href = "${element.html_url}">${element.login}</a></span>
+    getUserInfo(element.login).then(
+      (content) => {
+        userArr[content.login] = content;
+        $('.list_content').append(
+          `<div class = "list_item"><span class = "item_login"><a href = "${element.html_url}">${element.login}</a></span>
         <br>
-        <span class = "item_company">Company: ${content.company}</span>
+        <span class = "item_company">${content.company}</span>
         <br>
-        <span class = "item_email">Email: ${content.email}</span>
+        <span class = "item_email">${content.email}</span>
         <br>
-        <span class = "item_location">Location: ${content.location}</span>
+        <span class = "item_location">${content.location}</span>
         <br>
-        <button id = "editProfile" class = "click-me">edit profile</button>
+        <input type = "button" id = "editProfile" class = "click-me" value = "edit profile" data-user = "${element.login}">
         </div>`,
-      );
-    });
+        );
+      },
+      (errData) => {
+        console.log(errData);
+      },
+    );
   });
 }
 
 function sortAndReplace() {
   if ($('.sort-type:selected').attr('data-val') === 'alph_a') {
-    ascSort([list, goldList, bronzeList, silverList]);
-    if ($('.list_content').attr('data-current') === 'all') {
-      replace(list);
-    } else if ($('.list_content').attr('data-current') === 'gold') {
-      replace(goldList);
-    } else if ($('.list_content').attr('data-current') === 'silver') {
-      replace(silverList);
-    } else if ($('.list_content').attr('data-current') === 'bronze') {
-      replace(bronzeList);
-    }
+    sort([list, goldList, bronzeList, silverList], 'asc');
   } else if ($('.sort-type:selected').attr('data-val') === 'alph_d') {
-    descSort([list, goldList, bronzeList, silverList]);
-    if ($('.list_content').attr('data-current') === 'all') {
-      replace(list);
-    } else if ($('.list_content').attr('data-current') === 'gold') {
-      replace(goldList);
-    } else if ($('.list_content').attr('data-current') === 'silver') {
-      replace(silverList);
-    } else if ($('.list_content').attr('data-current') === 'bronze') {
-      replace(bronzeList);
-    }
+    sort([list, goldList, bronzeList, silverList], 'desc');
   } else if ($('.sort-type:selected').attr('data-val') === 'contr_a') {
-    contrASort([list, goldList, bronzeList, silverList]);
-    if ($('.list_content').attr('data-current') === 'all') {
-      replace(list);
-    } else if ($('.list_content').attr('data-current') === 'gold') {
-      replace(goldList);
-    } else if ($('.list_content').attr('data-current') === 'silver') {
-      replace(silverList);
-    } else if ($('.list_content').attr('data-current') === 'bronze') {
-      replace(bronzeList);
-    }
+    contrSort([list, goldList, bronzeList, silverList], 'asc');
   } else if ($('.sort-type:selected').attr('data-val') === 'contr_d') {
-    contrDSort([list, goldList, bronzeList, silverList]);
-    if ($('.list_content').attr('data-current') === 'all') {
-      replace(list);
-    } else if ($('.list_content').attr('data-current') === 'gold') {
-      replace(goldList);
-    } else if ($('.list_content').attr('data-current') === 'silver') {
-      replace(silverList);
-    } else if ($('.list_content').attr('data-current') === 'bronze') {
-      replace(bronzeList);
-    }
+    contrSort([list, goldList, bronzeList, silverList], 'desc');
   }
+  if ($('.list_content').attr('data-current') === 'all') {
+    replaceList(list);
+  } else if ($('.list_content').attr('data-current') === 'gold') {
+    replaceList(goldList);
+  } else if ($('.list_content').attr('data-current') === 'silver') {
+    replaceList(silverList);
+  } else if ($('.list_content').attr('data-current') === 'bronze') {
+    replaceList(bronzeList);
+  }
+}
+
+function validation() {
+  fieldsArr.forEach((ptr) => {
+    if ($(ptr).val().length === 0) {
+      $(ptr).addClass('warn');
+      statusValid = false;
+    } else {
+      $(ptr).removeClass('warn');
+      statusValid = true;
+    }
+  });
+}
+
+function handleModal(user) {
+  $('.modal').css('display', 'flex');
+  $('.page').css('filter', 'blur(8px)');
+  $('#accName').replaceWith(
+    `<span class="modal-subtitle" id="accName">${userArr[user].login}</span>`,
+  );
+  $('#email').replaceWith(`<span class="modal-subtitle" id="email">${userArr[user].email}</span>`);
 }
 
 $(document).ready(() => {
   $.ajax({
     url: 'https://api.github.com/rate_limit',
-    success(data) {
+  }).then(
+    (data) => {
       console.log(data);
     },
-  });
+    (errData) => {
+      console.log(errData);
+    },
+  );
   $('#inputButton').click(() => {
+    userArr = {};
     list = [];
     goldList = [];
     bronzeList = [];
@@ -181,22 +189,32 @@ $(document).ready(() => {
   });
   $('.all-tier').click(() => {
     $('.list_content').attr('data-current', 'all');
-    replace(list);
+    replaceList(list);
   });
   $('.gold-tier').click(() => {
     $('.list_content').attr('data-current', 'gold');
-    replace(goldList);
+    replaceList(goldList);
   });
   $('.silver-tier').click(() => {
     $('.list_content').attr('data-current', 'silver');
-    replace(silverList);
+    replaceList(silverList);
   });
   $('.bronze-tier').click(() => {
     $('.list_content').attr('data-current', 'bronze');
-    replace(bronzeList);
+    replaceList(bronzeList);
   });
   $('.sort_main').on('change', () => {
     sortAndReplace();
   });
+  $(document).on('click', '#editProfile', (elem) => {
+    handleModal($(elem.target).attr('data-user'));
+  });
+  $(document).on('click', '.btn', () => {
+    validation();
+    if (statusValid) {
+      $('.modal').css('display', 'none');
+      $('.page').css('filter', 'none');
+      $('.modal-input').val('');
+    }
+  });
 });
-

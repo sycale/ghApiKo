@@ -1,18 +1,29 @@
+body {
+  margin: 0;
+}
+
 .page {
   display: flex;
   flex-direction: column;
 }
 
-.title {
+.header {
   text-align: center;
   font-weight: 800;
   font-size: 40px;
   width: 100%;
+  background-color: cyan;
+  height: 150px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  align-content: center;
 }
 
 .main {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin-top: 100px;
 }
@@ -44,7 +55,8 @@ a:visited {
 }
 
 .contributors {
-  width: 50%;
+  width: 100%;
+  margin-top:50px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -71,7 +83,7 @@ a:visited {
   background-color: #fff;
 }
 
-.title_item > span:hover {
+.choose > span:hover {
   background-color: orange;
 }
 
@@ -89,12 +101,15 @@ a:visited {
   flex: 1 1 auto;
   font-size: 20px;
   font-weight: 800;
+  width:200px;
 }
 
 .list_content {
+  margin-bottom: 150px;
   display: flex;
   flex-direction: column;
   margin-top: 50px;
+
 }
 
 .item_login {
@@ -102,9 +117,16 @@ a:visited {
   margin-bottom: 500px;
 }
 
-.list_item {
+.list_item  {
   margin-bottom: 25px;
-
+  display: flex;
+  flex-direction: row;
+  height: 20px;
+  width:100%;
+  & > span {
+    flex: 1 1 auto;
+    width:200px;
+  }
 }
 
 .modal {
@@ -231,3 +253,15 @@ li {
   height: 50px;
 }
 
+.warn {
+  border: solid red 1px;
+}
+
+
+.info {
+  text-align: start;
+  margin-left:160px; 
+  &:hover {
+    background-color: #fff;
+  }
+}

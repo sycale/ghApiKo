@@ -1,5 +1,7 @@
+
+
 <div class="page">
-  <span class="title">Application to get contributors</span>
+  <div class = "header"><span >Application to get contributors</span></div>
   <div class="main">
     <div class="submit-box">
       <input type="text" id="inputText" placeholder="owner/repo" />
@@ -21,10 +23,16 @@
       </div>
       <div class="contributors_list">
         <div class="list_title">
-          <div class="title_item all-tier"><span>All</span></div>
-          <div class="title_item gold-tier"><span>Gold list:</span></div>
-          <div class="title_item silver-tier"><span>Silver list:</span></div>
-          <div class="title_item bronze-tier"><span>Bronze list:</span></div>
+          <div class="title_item all-tier choose"><span>All</span></div>
+          <div class="title_item gold-tier choose"><span>Gold list:</span></div>
+          <div class="title_item silver-tier choose"><span>Silver list:</span></div>
+          <div class="title_item bronze-tier choose"><span>Bronze list:</span></div>
+        </div>
+        <div class="list_title">
+          <div class="title_item info"><span>ACCOUNT NAME: </span></div>
+          <div class="title_item info"><span>COMPANY:</span></div>
+          <div class="title_item info"><span>EMAIL: </span></div>
+          <div class="title_item info"><span>LOCATION:</span></div>
         </div>
         <div class="list_content"></div>
       </div>
@@ -33,40 +41,40 @@
 </div>
 
 <div class="modal">
-  <div class="modal_box modal_title">Profile</div>
+  <div class="modal_box modal_title">Profile </div>
   <div class="modal_box dir-row">
     <div class="box_item">
       <span class="modal-title">FIRST NAME*</span>
-      <input type="text" class="modal-input" placeholder="First name" />
+      <input type="text" class="modal-input" id = "firstName" placeholder="First name" />
     </div>
-    <div class="box-item">
+    <div class="box_item">
       <span class="modal-title">LAST NAME*</span>
-      <input type="text" class="modal-input" placeholder="Last name" />
+      <input type="text" class="modal-input" id = "lastName" placeholder="Last name" />
     </div>
   </div>
   <div class="modal_box">
     <span class="modal-title">
       JOB ROLE/FUNCTION*
     </span>
-    <input type="text" class="modal-input" placeholder="JOB ROLE/FUNCTION" />
+    <input type="text" class="modal-input " id = "jobRole" placeholder="JOB ROLE/FUNCTION" />
   </div>
   <div class="modal_box dir-row">
     <div class="box_item">
       <span class="modal-title">PHONE NUMBER</span>
-      <input type="text" class="modal-input modal-input__narrow" placeholder="phone number" />
+      <input type="text" class="modal-input modal-input__narrow" id = "phone" placeholder="phone number" />
     </div>
     <div class="box_item">
       <span class="modal-title">EXTENSION</span>
-      <input type="text" class="modal-input modal-input__narrow" placeholder="extension" />
+      <input type="text" class="modal-input modal-input__narrow" id = "extension" placeholder="extension" />
     </div>
   </div>
   <div class="modal_box">
     <span class="modal-title">ACCOUNT NAME</span>
-    <span class="modal-subtitle" id="login">Account name</span>
+    <span class="modal-subtitle" id="accName">Account name</span>
   </div>
   <div class="modal_box">
     <span class="modal-title">ACCOUNT NUMBER</span>
-    <span class="modal-subtitle" id="phone">XXXXXXXX</span>
+    <span class="modal-subtitle" id="number">XXXXXXXX</span>
   </div>
   <div class="modal_box">
     <span class="modal-title">EMAIL ADDRESS</span>
@@ -81,8 +89,8 @@
       <li>Must include uppercase and lowercase letters</li>
       <li>Must include a number and/or special characters</li>
     </ul>
-    <input type="password" class="modal-input" placeholder="Old Password" />
-    <input type="password" class="modal-input" placeholder="New Password" />
+    <input type="password" class="modal-input" id = "oldPsw" placeholder="Old Password" />
+    <input type="password" class="modal-input" id = "newPsw" placeholder="New Password" />
     <div class="btns">
       <button class="cancel-btn btn">Cancel</button>
       <button class="save-btn btn">Save</button>
