@@ -46,10 +46,6 @@ body {
   font-size: 15px;
 }
 
-a {
-  text-decoration: none;
-}
-
 a:visited {
   color: blue;
 }
@@ -83,9 +79,7 @@ a:visited {
   background-color: #fff;
 }
 
-.choose > span:hover {
-  background-color: orange;
-}
+
 
 .list_title {
   display: flex;
@@ -102,6 +96,10 @@ a:visited {
   font-size: 20px;
   font-weight: 800;
   width:200px;
+  
+  & > span:hover {
+    color: orange;
+  }
 }
 
 .list_content {
@@ -109,12 +107,15 @@ a:visited {
   display: flex;
   flex-direction: column;
   margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
 
 }
 
 .item_login {
   font-size: 25px;
-  margin-bottom: 500px;
+  text-decoration: none;
+  width: 250px;
 }
 
 .list_item  {
@@ -123,7 +124,7 @@ a:visited {
   flex-direction: row;
   height: 20px;
   width:100%;
-  & > span {
+  & > a {
     flex: 1 1 auto;
     width:200px;
   }
@@ -134,23 +135,28 @@ a:visited {
   padding: 20px;
   border-radius: 15px;
   z-index: 1;
+
   & > div {
     margin-bottom: 50px;
   }
+  
   position: absolute;
   top: 50px;
   background-color: #fff;
   left: 30%;
-  display: none;
+  display: flex;
   flex-direction: column;
+
   &_title {
     font-size: 40px;
     color: rgb(139, 139, 251);
   }
+
   &_box {
     display: flex;
     flex-direction: column;
     justify-content: start;
+
     .box_item {
       display: flex;
       flex-direction: column;
@@ -172,9 +178,11 @@ a:visited {
   border-radius: 5px;
   outline: none;
   border: solid rgb(184, 184, 184) 1px;
+
   &:focus {
     border: solid 2px green;
   }
+
   &__narrow {
     width: 150px;
   }
@@ -183,6 +191,7 @@ a:visited {
 .modal-title {
   font-weight: 800;
   font-size: 15px;
+
   &__small {
     font-size: 14px;
     margin-top: 15px;
@@ -212,6 +221,7 @@ li {
   top: 908px;
   left: 280px;
   width: 30px;
+
   &__lower {
     top: 958px;
   }
@@ -232,6 +242,7 @@ li {
   border: solid white 1px;
   border-radius: 5px;
   outline: none;
+
   &:hover {
     background-color: orange;
   }
@@ -261,7 +272,12 @@ li {
 .info {
   text-align: start;
   margin-left:160px; 
+
   &:hover {
     background-color: #fff;
   }
+}
+
+.d-none {
+  display: none !important;
 }
